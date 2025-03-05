@@ -93,6 +93,9 @@
               <div *ngIf="reservationForm.get('document')?.hasError('required')">Documento es requerido</div>
               <div *ngIf="reservationForm.get('document')?.hasError('minlength')">Mínimo 6 caracteres</div>
               <div *ngIf="reservationForm.get('document')?.hasError('pattern')">Solo números</div>
+              <div *ngIf="reservationForm.get('document')?.hasError('documentAlreadyReserved')">
+                Este documento ya tiene una reserva para el servicio seleccionado.
+              </div>
             </div>
           </div>
           
