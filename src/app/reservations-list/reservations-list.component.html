@@ -1,0 +1,40 @@
+<div class="row mb-4">
+    <div class="col-12">
+      <h2>Listado de Reservas</h2>
+    </div>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Código de Reserva</th>
+          <th>Documento</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha y Hora de Salida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservations">
+          <td>
+            <span class="badge bg-primary">{{ reservation.reservationCode }}</span>
+          </td>
+          <td>{{ reservation.document }}</td>
+          <td>{{ reservation.firstName }}</td>
+          <td>{{ reservation.lastName }}</td>
+          <td>
+            <!-- TODO mostrar la fecha y hora de salida cuando tenga los servicios -->
+            <span class="placeholder-wave">Pendiente</span>
+          </td>
+        </tr>
+        <tr *ngIf="reservations.length === 0">
+          <td colspan="5" class="text-center py-4">
+            <div class="alert alert-info mb-0">
+              No hay reservas disponibles.
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
