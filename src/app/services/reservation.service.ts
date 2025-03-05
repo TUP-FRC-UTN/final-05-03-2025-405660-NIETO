@@ -56,7 +56,7 @@ export class ReservationService {
     // ULTIMOS NUMEROS DEL DOCUMENTO
     const lastThreeDigits = document.substring(Math.max(0, document.length - 3));
     
-    // RELLENAR CON NUMEROS RANDOM
+    // RELLENAR
     const uniqueId = Math.random().toString(36).substring(2, 8).toUpperCase();
     
     return `${firstInitial}${lastInitial}${lastThreeDigits}-${uniqueId}`;
