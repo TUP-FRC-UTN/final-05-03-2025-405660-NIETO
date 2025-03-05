@@ -4,7 +4,7 @@
     </div>
   </div>
   
-  <!-- Formulario de Búsqueda -->
+  <!-- Form -->
   <div class="card mb-4">
     <div class="card-header bg-primary text-white">
       <h3 class="h5 mb-0">Buscar Servicios</h3>
@@ -48,11 +48,24 @@
             Buscar Servicios
           </button>
         </div>
+        <!-- Mensajes de estado -->
+        <div *ngIf="loading" class="alert alert-info mt-3">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Buscando servicios...
+        </div>
+        
+        <div *ngIf="searchPerformed && !loading && availableServices.length === 0" class="alert alert-warning mt-3">
+            No se encontraron servicios disponibles para los criterios seleccionados.
+        </div>
+        
+        <div *ngIf="searchError" class="alert alert-danger mt-3">
+            Ocurrió un error al buscar servicios. Por favor, intente nuevamente.
+        </div>
       </form>
     </div>
   </div>
   
-  <!-- Formulario de Reserva -->
+  <!-- Formulario de la Reserva -->
   <div class="card mb-4" *ngIf="availableServices.length > 0">
     <div class="card-header bg-success text-white">
       <h3 class="h5 mb-0">Realizar Reserva</h3>
@@ -123,6 +136,9 @@
                       <div *ngIf="passenger.get('document')?.hasError('required')">Documento es requerido</div>
                       <div *ngIf="passenger.get('document')?.hasError('minlength')">Mínimo 6 caracteres</div>
                       <div *ngIf="passenger.get('document')?.hasError('pattern')">Solo números</div>
+                      <div *ngIf="reservationForm.get('document')?.hasError('documentAlreadyReserved')">
+                        Este documento ya tiene una reserva para el servicio seleccionado.
+                      </div>
                     </div>
                   </div>
                   
@@ -153,6 +169,19 @@
           <button type="submit" class="btn btn-success" [disabled]="reservationForm.invalid">
             Confirmar Reserva
           </button>
+        </div>
+        <!-- Mensajes de estado de la reserva -->
+        <div *ngIf="loading && reservationForm.valid" class="alert alert-info mt-3">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Procesando reserva...
+        </div>
+        
+        <div *ngIf="reservationSuccess" class="alert alert-success mt-3">
+            ¡Reserva creada exitosamente! Redirigiendo a la lista de reservas...
+        </div>
+        
+        <div *ngIf="reservationError" class="alert alert-danger mt-3">
+            Ocurrió un error al crear la reserva. Por favor, intente nuevamente.
         </div>
       </form>
     </div>

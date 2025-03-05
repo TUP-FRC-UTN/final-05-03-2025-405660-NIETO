@@ -24,8 +24,7 @@
           <td>{{ reservation.firstName }}</td>
           <td>{{ reservation.lastName }}</td>
           <td>
-            <!-- TODO mostrar la fecha y hora de salida cuando tenga los servicios -->
-            <span class="placeholder-wave">Pendiente</span>
+            {{ getDepartureInfo(reservation.service) }}
           </td>
         </tr>
         <tr *ngIf="reservations.length === 0">
