@@ -127,7 +127,7 @@ export class ReserveComponent implements OnInit {
     
     this.destinationCities = this.cities.filter(city => city.id !== originId);
     
-    // Origen y destino se resetean si son iguales
+    // Origen y destino se resetean
     const currentDestination = this.searchForm.get('destination')?.value;
     if (currentDestination === originId) {
       this.searchForm.get('destination')?.setValue('');
@@ -174,10 +174,9 @@ export class ReserveComponent implements OnInit {
       
       const formValues = this.reservationForm.value;
       
-      // Preparar los datos para la reserva
       const passengersList: Passenger[] = [...formValues.passengers];
       
-      // Agregar al titular como pasajero principal
+      // Titular principal
       passengersList.unshift({
         document: formValues.document,
         firstName: formValues.firstName,

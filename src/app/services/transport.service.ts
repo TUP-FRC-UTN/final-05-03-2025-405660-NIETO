@@ -15,14 +15,14 @@ export class TransportService {
     return this.http.get<Transport[]>(this.apiUrl);
   }
 
-  // Este método filtrará los servicios según los parámetros de búsqueda
+  // Filtros
   findServices(origin: string, destination: string, date: string): Observable<Transport[]> {
     return this.http.get<Transport[]>(
       `${this.apiUrl}?origin=${origin}&destination=${destination}&departureDate=${date}`
     );
   }
 
-  // Método para obtener un servicio específico por ID
+  // Get by id
   getService(id: string): Observable<Transport> {
     return this.http.get<Transport>(`${this.apiUrl}/${id}`);
   }

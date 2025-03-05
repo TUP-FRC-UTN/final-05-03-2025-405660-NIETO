@@ -17,7 +17,7 @@ export class ReservationService {
   }
 
   createReservation(reservation: Reservation): Observable<Reservation> {
-    // Generar código de reserva
+    // HACER EL CODIGO DE RESERVA
     reservation.reservationCode = this.generateReservationCode(
       reservation.firstName,
       reservation.lastName,
@@ -27,7 +27,7 @@ export class ReservationService {
     return this.http.post<Reservation>(this.apiUrl, reservation);
   }
 
-  // Validador asíncrono para verificar si un documento ya tiene una reserva para un servicio
+  // LA VALIDACION ASYNC DEL DOCUMENTO
   checkDocumentValidator(serviceId: string): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const document = control.value;
@@ -48,19 +48,17 @@ export class ReservationService {
     };
   }
 
-  // Método para generar el código de reserva
   private generateReservationCode(firstName: string, lastName: string, document: string): string {
-    // Obtener iniciales
+    // INICIALES DEL NOMBRE Y APE
     const firstInitial = firstName.charAt(0).toUpperCase();
     const lastInitial = lastName.charAt(0).toUpperCase();
     
-    // Obtener últimos 3 dígitos del documento
+    // ULTIMOS NUMEROS DEL DOCUMENTO
     const lastThreeDigits = document.substring(Math.max(0, document.length - 3));
     
-    // Generar un identificador único
+    // RELLENAR CON NUMEROS RANDOM
     const uniqueId = Math.random().toString(36).substring(2, 8).toUpperCase();
     
-    // Formato: <Iniciales><Últimos 3 Dígitos>-<Identificador Único>
     return `${firstInitial}${lastInitial}${lastThreeDigits}-${uniqueId}`;
   }
 }

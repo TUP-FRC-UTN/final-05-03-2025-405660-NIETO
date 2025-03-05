@@ -48,7 +48,7 @@
             Buscar Servicios
           </button>
         </div>
-        <!-- Mensajes de estado -->
+        <!-- Mensajes -->
         <div *ngIf="loading" class="alert alert-info mt-3">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
             Buscando servicios...
@@ -65,7 +65,7 @@
     </div>
   </div>
   
-  <!-- Formulario de la Reserva -->
+  <!-- Form reserva -->
   <div class="card mb-4" *ngIf="availableServices.length > 0">
     <div class="card-header bg-success text-white">
       <h3 class="h5 mb-0">Realizar Reserva</h3>
@@ -115,7 +115,7 @@
           </div>
         </div>
         
-        <!-- Pasajeros Adicionales -->
+        <!-- Pasajeros +++++ -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h4 class="h6 mb-0">Pasajeros Adicionales</h4>
@@ -170,7 +170,7 @@
             Confirmar Reserva
           </button>
         </div>
-        <!-- Mensajes de estado de la reserva -->
+        <!-- Mensajes reserva -->
         <div *ngIf="loading && reservationForm.valid" class="alert alert-info mt-3">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
             Procesando reserva...
